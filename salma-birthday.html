@@ -1,0 +1,3071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Happy Birthday, Kirukki ❤️ | Forever Yours, Your Kirukken</title>
+  <meta name="description" content="A magical, fully responsive birthday wonderland crafted with infinite love by Your Kirukken for Kirukki.">
+  
+  <!-- Google Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       ROYAL ENCHANTED MOBILE-FIRST DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      --bg-dark: #07010b;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #3d0c4e 0%, #170422 45%, #07010c 100%);
+      --surface-glass: rgba(255, 255, 255, 0.05);
+      --surface-card: rgba(32, 10, 44, 0.75);
+      
+      --gold-light: #fff2d4;
+      --gold-primary: #f5d182;
+      --gold-deep: #c48c2b;
+      --gold-glow: rgba(245, 209, 130, 0.45);
+
+      --rose-light: #ffd8e2;
+      --rose-primary: #f46285;
+      --rose-deep: #96183d;
+      --rose-glow: rgba(244, 98, 133, 0.5);
+
+      --lavender-soft: #eddefc;
+      --lavender-muted: #b4a0cf;
+      
+      --text-main: #ffffff;
+      --text-sub: #f5eafc;
+      --text-muted: #c2b3d6;
+
+      --border-subtle: rgba(245, 209, 130, 0.2);
+      --border-medium: rgba(245, 209, 130, 0.4);
+      --border-rose: rgba(244, 98, 133, 0.48);
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-serif: 'Cormorant Garamond', Garamond, serif;
+      --font-script: 'Alex Brush', cursive;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.85);
+      --shadow-gold: 0 0 30px rgba(245, 209, 130, 0.35);
+      --shadow-rose: 0 0 32px rgba(244, 98, 133, 0.38);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    ::selection {
+      background: var(--rose-primary);
+      color: #fff;
+    }
+
+    button {
+      font-family: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      touch-action: manipulation;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+
+    /* Ambient Canvas */
+    #ambientCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Stardust Cursor Sparkle */
+    .magic-sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      border-radius: 50%;
+      animation: sparkleFade 0.8s ease-out forwards;
+    }
+    @keyframes sparkleFade {
+      0% { transform: scale(1) translate(0, 0); opacity: 1; }
+      100% { transform: scale(0.2) translate(var(--tx), var(--ty)); opacity: 0; }
+    }
+
+    /* Ambient Nebulae */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+      animation: floatNebula 18s infinite alternate ease-in-out;
+    }
+    .glow-1 {
+      top: 0%;
+      left: 10%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, #631758, transparent 70%);
+    }
+    .glow-2 {
+      bottom: 10%;
+      right: 5%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, #7e1948, transparent 70%);
+      animation-delay: -9s;
+    }
+    @keyframes floatNebula {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.15) translate(20px, -20px); }
+      100% { transform: scale(0.95) translate(-20px, 20px); }
+    }
+
+    /* ==========================================================================
+       FLOATING AUDIO CONTROLLER (Responsive Pill)
+       ========================================================================== */
+    .audio-player-capsule {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(22, 6, 30, 0.92);
+      border: 1px solid var(--border-medium);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 6px 14px 6px 8px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: all 0.35s ease;
+      cursor: pointer;
+      max-width: 90vw;
+    }
+    .audio-player-capsule:hover {
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .audio-play-disc {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+      color: #1a0820;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(245, 209, 130, 0.4);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .audio-play-disc.spinning {
+      animation: spinDisc 5s linear infinite;
+    }
+    @keyframes spinDisc {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .audio-info {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .audio-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .audio-sub {
+      font-size: 0.65rem;
+      color: var(--lavender-muted);
+      white-space: nowrap;
+    }
+
+    .sound-bars-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    .s-bar {
+      width: 2.5px;
+      height: 3px;
+      background: var(--rose-primary);
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+    .sound-bars-wrap.playing .s-bar:nth-child(1) { animation: jumpBar 0.9s infinite ease-in-out; }
+    .sound-bars-wrap.playing .s-bar:nth-child(2) { animation: jumpBar 1.3s infinite ease-in-out 0.2s; }
+    .sound-bars-wrap.playing .s-bar:nth-child(3) { animation: jumpBar 0.7s infinite ease-in-out 0.4s; }
+    .sound-bars-wrap.playing .s-bar:nth-child(4) { animation: jumpBar 1.1s infinite ease-in-out 0.1s; }
+    @keyframes jumpBar {
+      0%, 100% { height: 3px; }
+      50% { height: 14px; }
+    }
+
+    .capsule-track-switch-btn {
+      background: rgba(245, 209, 130, 0.15);
+      border: 1px solid var(--border-medium);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--gold-light);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      margin-left: 2px;
+      flex-shrink: 0;
+    }
+    .capsule-track-switch-btn:hover {
+      background: rgba(244, 98, 133, 0.35);
+      border-color: var(--rose-primary);
+      transform: scale(1.12);
+      box-shadow: 0 0 12px var(--rose-glow);
+    }
+    .capsule-track-switch-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Autoplay Toast Pill */
+    .audio-toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: rgba(30, 8, 42, 0.96);
+      border: 1.5px solid var(--gold-primary);
+      backdrop-filter: blur(16px);
+      padding: 10px 22px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85), var(--shadow-gold);
+      opacity: 0;
+      transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      color: var(--gold-light);
+      font-size: 0.86rem;
+      font-weight: 500;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      justify-content: center;
+    }
+    .audio-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       SIDE NAVIGATION THREAD (Desktop Only)
+       ========================================================================== */
+    #sideNav {
+      position: fixed;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    #sideNav::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(245, 209, 130, 0.4), transparent);
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 1.5px solid rgba(245, 209, 130, 0.4);
+      position: relative;
+      transition: all 0.35s ease;
+    }
+    .nav-dot:hover {
+      transform: scale(1.4);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 12px var(--gold-primary);
+    }
+    .nav-dot.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 16px var(--gold-primary);
+      transform: scale(1.35);
+    }
+    .nav-label {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      background: rgba(18, 5, 25, 0.92);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+    }
+    .nav-dot:hover .nav-label {
+      opacity: 1;
+      transform: translateY(-50%) translateX(4px);
+    }
+    @media (max-width: 1024px) {
+      #sideNav { display: none; }
+    }
+
+    /* ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 18px;
+      width: 100%;
+    }
+
+    .section-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5.5rem 0 4.5rem;
+      position: relative;
+      text-align: center;
+      width: 100%;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding: 5px 18px;
+      background: rgba(245, 209, 130, 0.08);
+      border: 1px solid var(--border-medium);
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 6.5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      padding: 0 10px;
+    }
+    .section-title .gradient-text {
+      background: linear-gradient(135deg, var(--gold-light), var(--rose-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+
+    .section-sub {
+      max-width: 620px;
+      color: var(--text-muted);
+      font-size: clamp(0.92rem, 3vw, 1.05rem);
+      line-height: 1.8;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    /* Responsive Luxury Buttons */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-deep));
+      color: #12041a;
+      font-weight: 700;
+      font-size: 0.94rem;
+      letter-spacing: 0.02em;
+      padding: 14px 30px;
+      border-radius: 40px;
+      box-shadow: 0 10px 25px rgba(245, 209, 130, 0.35);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      min-height: 48px;
+    }
+    .btn-gold:active {
+      transform: scale(0.97);
+    }
+
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--surface-glass);
+      color: var(--text-main);
+      border: 1px solid var(--border-medium);
+      backdrop-filter: blur(12px);
+      padding: 14px 26px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.3s ease;
+      min-height: 48px;
+    }
+    .btn-glass:active {
+      transform: scale(0.97);
+    }
+
+    /* ==========================================================================
+       1. HERO SECTION (Fully Mobile Scaled)
+       ========================================================================== */
+    .hero-eyebrow {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 3.5vw, 1.45rem);
+      color: var(--lavender-soft);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-script);
+      font-size: clamp(4.2rem, 19vw, 10.5rem);
+      line-height: 0.92;
+      font-weight: 400;
+      color: var(--text-main);
+      text-shadow: 0 0 40px var(--rose-glow), 0 0 80px var(--gold-glow);
+      margin-bottom: 0.8rem;
+      animation: floatHero 6s ease-in-out infinite;
+      word-break: break-word;
+    }
+    @keyframes floatHero {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 3.8vw, 1.85rem);
+      font-style: italic;
+      color: var(--gold-light);
+      max-width: 720px;
+      margin: 1rem auto 2.2rem;
+      line-height: 1.55;
+      padding: 0 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 0.8rem;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .scroll-cue {
+      margin-top: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-primary);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      animation: bounceCue 2.4s infinite ease-in-out;
+    }
+    @keyframes bounceCue {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    /* ==========================================================================
+       2. COUNTDOWN TO SEPTEMBER 1ST (Mobile 2x2 Grid)
+       ========================================================================== */
+    .countdown-box {
+      margin-top: 2.8rem;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    .cd-panel {
+      background: linear-gradient(150deg, rgba(46, 18, 62, 0.65), rgba(18, 6, 26, 0.88));
+      border: 1px solid var(--border-medium);
+      backdrop-filter: blur(20px);
+      border-radius: 18px;
+      padding: 1.8rem 0.8rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-ambient);
+      transition: all 0.3s ease;
+    }
+    .cd-panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
+
+    .cd-val {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 7.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #ffffff, var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .cd-unit {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+    }
+
+    .countdown-note {
+      margin-top: 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244, 98, 133, 0.12);
+      border: 1px solid rgba(244, 98, 133, 0.35);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 0.86rem;
+      color: var(--lavender-soft);
+      max-width: 95%;
+    }
+
+    @media (max-width: 640px) {
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+      }
+      .cd-panel {
+        padding: 1.4rem 0.6rem;
+      }
+    }
+
+    /* ==========================================================================
+       3. CUSTOM SONG & LYRICS CAROUSEL ("Salma Salma")
+       ========================================================================== */
+    .song-section {
+      width: 100%;
+      max-width: 980px;
+      margin: 2.8rem auto 0;
+    }
+
+    .song-player-card {
+      background: linear-gradient(160deg, rgba(45, 14, 60, 0.88), rgba(18, 5, 26, 0.96));
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 24px;
+      padding: 2.5rem 1.6rem;
+      box-shadow: var(--shadow-ambient), var(--shadow-gold);
+      backdrop-filter: blur(24px);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .song-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      background: rgba(245, 209, 130, 0.12);
+      border: 1px solid var(--border-medium);
+      padding: 5px 14px;
+      border-radius: 30px;
+      margin-bottom: 1rem;
+      max-width: 95%;
+      word-break: break-word;
+    }
+
+    .song-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 5.5vw, 2.6rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+    .song-hero-author {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 3.2vw, 1.2rem);
+      color: var(--gold-light);
+      margin-bottom: 1.8rem;
+    }
+
+    /* Mobile Deck layout */
+    .song-deck {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+    }
+    .vinyl-record {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2e0838 25%, #0d0210 26%, #1a0522 65%, #050108 70%);
+      border: 2.5px solid rgba(245, 209, 130, 0.5);
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 16px var(--gold-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .vinyl-record.playing {
+      animation: spinVinyl 4s linear infinite;
+    }
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .vinyl-center {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--rose-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* Track Switcher Segmented Tabs */
+    .track-selector-tabs {
+      display: inline-flex;
+      background: rgba(18, 5, 26, 0.88);
+      border: 1.5px solid var(--border-medium);
+      border-radius: 40px;
+      padding: 6px;
+      gap: 6px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 209, 130, 0.15);
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 100%;
+    }
+    .track-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: clamp(0.82rem, 2.5vw, 0.94rem);
+      font-weight: 600;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: pointer;
+    }
+    .track-tab-btn:hover {
+      color: #fff;
+    }
+    .track-tab-btn.active {
+      background: linear-gradient(135deg, rgba(245, 209, 130, 0.25), rgba(244, 98, 133, 0.25));
+      border-color: var(--gold-primary);
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(245, 209, 130, 0.35);
+      transform: scale(1.02);
+    }
+    .track-tab-btn.voice-tab.active {
+      background: linear-gradient(135deg, rgba(244, 98, 133, 0.35), rgba(180, 50, 120, 0.35));
+      border-color: var(--rose-primary);
+      box-shadow: 0 0 18px rgba(244, 98, 133, 0.45);
+    }
+
+    /* Dual Track Quick Cards */
+    .track-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      width: 100%;
+      text-align: left;
+    }
+    .track-card {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 1.4rem 1.2rem;
+      transition: all 0.35s ease;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .track-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+    .track-card.active-track {
+      border-color: var(--gold-primary);
+      background: linear-gradient(145deg, rgba(245, 209, 130, 0.14), rgba(30, 8, 42, 0.85));
+      box-shadow: 0 0 25px rgba(245, 209, 130, 0.28);
+    }
+    .track-card.voice-card.active-track {
+      border-color: var(--rose-primary);
+      background: linear-gradient(145deg, rgba(244, 98, 133, 0.18), rgba(30, 8, 42, 0.85));
+      box-shadow: 0 0 25px rgba(244, 98, 133, 0.35);
+    }
+    .track-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+    .track-card-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      background: rgba(245, 209, 130, 0.12);
+      border: 1px solid var(--border-medium);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .track-card.voice-card .track-card-badge {
+      color: var(--rose-light);
+      background: rgba(244, 98, 133, 0.15);
+      border-color: var(--rose-primary);
+    }
+    .track-card-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+    .track-card-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+    }
+    .track-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .track-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--gold-light);
+      transition: all 0.25s ease;
+    }
+    .track-card:hover .track-card-btn {
+      background: var(--gold-primary);
+      color: #12041a;
+    }
+    .track-card.voice-card:hover .track-card-btn {
+      background: var(--rose-primary);
+      color: #ffffff;
+    }
+    .track-card.active-track .track-card-btn {
+      background: var(--gold-primary);
+      color: #12041a;
+      border-color: var(--gold-primary);
+    }
+    .track-card.voice-card.active-track .track-card-btn {
+      background: var(--rose-primary);
+      color: #fff;
+      border-color: var(--rose-primary);
+    }
+
+    /* Scrubber and Time Bar */
+    .song-scrubber-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin: 1.2rem auto 1.8rem;
+      padding: 0 10px;
+    }
+    .song-progress-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .song-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-primary), var(--rose-primary));
+      border-radius: 10px;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 10px var(--gold-primary);
+    }
+    .song-time-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      color: var(--lavender-muted);
+      margin-top: 7px;
+    }
+
+    .btn-voice {
+      border-color: var(--border-rose) !important;
+      background: rgba(244, 98, 133, 0.12) !important;
+      color: #ffd8e2 !important;
+    }
+    .btn-voice:hover {
+      background: rgba(244, 98, 133, 0.28) !important;
+      box-shadow: 0 0 22px var(--rose-glow) !important;
+      border-color: var(--rose-primary) !important;
+    }
+
+    /* Lyrics Grid */
+    .lyrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      text-align: left;
+      width: 100%;
+    }
+
+    .lyrics-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.4rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .lyrics-card.highlight {
+      border-color: var(--rose-primary);
+      background: rgba(244, 98, 133, 0.08);
+      box-shadow: 0 4px 20px rgba(244, 98, 133, 0.2);
+    }
+
+    .lyrics-verse-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lyrics-body {
+      font-family: var(--font-sans);
+      font-size: clamp(0.88rem, 2.6vw, 0.96rem);
+      line-height: 1.85;
+      color: var(--text-sub);
+      white-space: pre-line;
+    }
+
+    /* ==========================================================================
+       4. PERSONAL LOVE LETTER (YOUR KIRUKKEN TO KIRUKKI)
+       ========================================================================== */
+    .letter-stage {
+      margin-top: 2.8rem;
+      width: 100%;
+      max-width: 760px;
+      position: relative;
+    }
+
+    .letter-parchment {
+      background: linear-gradient(165deg, rgba(38, 14, 52, 0.92), rgba(16, 5, 23, 0.98));
+      border: 1.5px solid var(--border-medium);
+      border-radius: 22px;
+      backdrop-filter: blur(30px);
+      padding: 3.8rem 2rem 2.8rem;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85);
+      width: 100%;
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: -24px;
+      left: 28px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold-deep) 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-script);
+      font-size: 1.8rem;
+      color: #12031a;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), 0 0 16px var(--gold-glow);
+      transform: rotate(-8deg);
+    }
+
+    .letter-salutation {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 1.3rem;
+    }
+
+    .letter-parchment p {
+      color: var(--text-main);
+      font-size: clamp(0.95rem, 2.8vw, 1.08rem);
+      line-height: 1.9;
+      margin-bottom: 1.3rem;
+      opacity: 0.95;
+    }
+
+    .letter-emphasis {
+      color: var(--gold-light);
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(245, 209, 130, 0.45);
+      padding-bottom: 1px;
+    }
+
+    .letter-callout {
+      margin: 1.6rem 0;
+      padding: 1.1rem 1.4rem;
+      border-left: 3.5px solid var(--rose-primary);
+      background: rgba(244, 98, 133, 0.1);
+      border-radius: 0 14px 14px 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 3.2vw, 1.28rem);
+      color: var(--rose-light);
+      line-height: 1.6;
+    }
+
+    .letter-foot {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(245, 209, 130, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .letter-sign-off {
+      font-size: 0.92rem;
+      color: var(--lavender-muted);
+      line-height: 1.6;
+    }
+    .letter-signature {
+      font-family: var(--font-script);
+      font-size: clamp(2.6rem, 7vw, 3.4rem);
+      color: var(--gold-light);
+      line-height: 1;
+      text-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    @media (max-width: 540px) {
+      .letter-parchment {
+        padding: 3.2rem 1.3rem 2.2rem;
+      }
+      .wax-seal {
+        left: 18px;
+        top: -20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ==========================================================================
+       5. REASONS I LOVE YOU (3D FLIP CARDS)
+       ========================================================================== */
+    .reasons-wrapper {
+      margin-top: 2.8rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .reasons-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      background: var(--surface-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 40px;
+      padding: 8px 18px;
+      font-size: 0.84rem;
+      color: var(--lavender-muted);
+      width: 100%;
+    }
+    .progress-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      margin: 0 12px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--rose-primary), var(--gold-primary));
+      border-radius: 6px;
+      transition: width 0.5s ease;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.4rem;
+      width: 100%;
+    }
+
+    .card-3d {
+      perspective: 1200px;
+      height: 240px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .card-3d-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+      border-radius: 20px;
+    }
+
+    .card-3d.flipped .card-3d-inner {
+      transform: rotateY(180deg);
+    }
+
+    .face-front, .face-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 20px;
+      padding: 1.8rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--shadow-ambient);
+    }
+
+    .face-front {
+      background: linear-gradient(150deg, rgba(46, 16, 61, 0.75), rgba(18, 5, 26, 0.92));
+      border: 1px solid var(--border-medium);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .face-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+      filter: drop-shadow(0 0 10px var(--rose-glow));
+    }
+
+    .face-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+
+    .face-prompt {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    .face-back {
+      background: linear-gradient(150deg, rgba(82, 22, 78, 0.96), rgba(28, 7, 40, 0.98));
+      border: 1.5px solid var(--gold-primary);
+      transform: rotateY(180deg);
+      box-shadow: var(--shadow-gold);
+      color: var(--text-main);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .back-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    #allDiscoveredToast {
+      margin-top: 1.8rem;
+      padding: 1rem 1.6rem;
+      background: linear-gradient(135deg, rgba(245, 209, 130, 0.15), rgba(244, 98, 133, 0.15));
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 40px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold-light);
+      width: 100%;
+    }
+    #allDiscoveredToast[hidden] { display: none; }
+
+    /* ==========================================================================
+       6. LONG DISTANCE RADAR & OUR STORY
+       ========================================================================== */
+    .distance-wrapper {
+      margin-top: 2.8rem;
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    .distance-radar {
+      background: linear-gradient(145deg, rgba(38, 14, 52, 0.78), rgba(16, 5, 24, 0.94));
+      border: 1px solid var(--border-medium);
+      border-radius: 22px;
+      padding: 1.8rem 1.4rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-ambient);
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+      width: 100%;
+    }
+
+    .radar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .radar-user {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      z-index: 2;
+    }
+    .user-badge-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-primary), var(--rose-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 0 16px var(--gold-glow);
+    }
+    .user-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .user-sub {
+      font-size: 0.7rem;
+      color: var(--lavender-muted);
+    }
+
+    .radar-track {
+      flex: 1;
+      height: 3px;
+      background: rgba(245, 209, 130, 0.25);
+      margin: 0 12px;
+      position: relative;
+      border-radius: 3px;
+    }
+    .radar-pulse-light {
+      position: absolute;
+      top: -5px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      box-shadow: 0 0 14px var(--gold-primary);
+      animation: travelLight 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    @keyframes travelLight {
+      0% { left: 0%; transform: scale(0.8); }
+      50% { left: 50%; transform: scale(1.4); background: var(--rose-primary); box-shadow: 0 0 18px var(--rose-primary); }
+      100% { left: 100%; transform: scale(0.8); }
+    }
+
+    .radar-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(245, 209, 130, 0.15);
+      padding-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--lavender-muted);
+    }
+    .radar-stats strong {
+      color: var(--gold-light);
+    }
+
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .memory-card {
+      background: linear-gradient(160deg, rgba(42, 15, 56, 0.75), rgba(18, 5, 25, 0.92));
+      border: 1px solid var(--border-medium);
+      border-radius: 20px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow-ambient);
+      text-align: left;
+      width: 100%;
+    }
+
+    .memory-art {
+      width: 100%;
+      height: 160px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #330d3e, #160421);
+      border: 1px solid rgba(245, 209, 130, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .memory-art .art-icon {
+      font-size: 3rem;
+      color: var(--gold-light);
+      filter: drop-shadow(0 0 14px var(--gold-glow));
+    }
+    .memory-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(12, 3, 18, 0.88);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 10px;
+      border-radius: 20px;
+      color: var(--rose-light);
+    }
+
+    .memory-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+    .memory-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       7. INTERACTIVE SURPRISE GIFT UNWRAP & CAKE CANDLE
+       ========================================================================== */
+    .surprise-stage {
+      margin-top: 2.8rem;
+      width: 100%;
+      max-width: 740px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gift-container {
+      perspective: 1200px;
+      margin-bottom: 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .luxury-gift-box {
+      width: clamp(200px, 60vw, 240px);
+      height: clamp(160px, 50vw, 190px);
+      background: linear-gradient(145deg, #6b1755, #2c0738);
+      border: 2px solid var(--gold-primary);
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), var(--shadow-gold);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .luxury-gift-box:active {
+      transform: scale(0.95);
+    }
+
+    .ribbon-v {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 24px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #d89f43, #fff2c8, #c68a2e);
+      box-shadow: 0 0 10px rgba(245, 209, 130, 0.4);
+    }
+    .ribbon-h {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 24px;
+      transform: translateY(-50%);
+      background: linear-gradient(180deg, #d89f43, #fff2c8, #c68a2e);
+      box-shadow: 0 0 10px rgba(245, 209, 130, 0.4);
+    }
+
+    .bow-icon {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.8rem;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.6));
+      animation: bowFloat 2s infinite ease-in-out;
+    }
+    @keyframes bowFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    .gift-box-tag {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      white-space: nowrap;
+      background: rgba(22, 6, 30, 0.95);
+      padding: 5px 14px;
+      border-radius: 30px;
+      border: 1px solid var(--border-medium);
+    }
+
+    .revealed-gift-card {
+      width: 100%;
+      background: linear-gradient(165deg, rgba(52, 17, 68, 0.95), rgba(18, 5, 25, 0.98));
+      border: 2px solid var(--gold-primary);
+      border-radius: 24px;
+      padding: 2.8rem 1.5rem;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), var(--shadow-gold);
+      backdrop-filter: blur(30px);
+      text-align: center;
+      position: relative;
+      animation: unfoldGift 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .revealed-gift-card[hidden] { display: none; }
+
+    @keyframes unfoldGift {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .gift-crown {
+      font-family: var(--font-script);
+      font-size: clamp(2.2rem, 6.5vw, 3rem);
+      color: var(--gold-light);
+      margin-bottom: 0.2rem;
+    }
+
+    .gift-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 5.5vw, 2.8rem);
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .gift-msg {
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      line-height: 1.85;
+      color: var(--text-main);
+      max-width: 580px;
+      margin: 0 auto 2rem;
+    }
+
+    .cake-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-medium);
+      border-radius: 18px;
+      padding: 1.8rem 1rem;
+      max-width: 440px;
+      margin: 0 auto 1.8rem;
+    }
+    .candle-cue {
+      font-size: 0.88rem;
+      color: var(--rose-light);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .candle-stage {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 3.5rem;
+      transition: transform 0.2s ease;
+      user-select: none;
+    }
+    .candle-stage:active {
+      transform: scale(1.15);
+    }
+    .candle-flame-anim {
+      display: inline-block;
+      animation: flameWiggle 0.7s infinite alternate ease-in-out;
+    }
+    @keyframes flameWiggle {
+      0% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 8px #ffbb00); }
+      100% { transform: scale(1.2) rotate(3deg); filter: drop-shadow(0 0 20px #ff4400); }
+    }
+    .wish-msg {
+      margin-top: 1rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold-light);
+    }
+    .wish-msg[hidden] { display: none; }
+
+    /* ==========================================================================
+       8. FINALE & KIRUKKI'S REACTION SELECTION
+       ========================================================================== */
+    .finale-section {
+      border-top: 1px solid rgba(245, 209, 130, 0.25);
+      min-height: auto;
+      padding: 5.5rem 0 6.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .heart-pulse {
+      font-size: 3rem;
+      color: var(--rose-primary);
+      margin-bottom: 1.2rem;
+      display: inline-block;
+      animation: throb 1.8s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+      filter: drop-shadow(0 0 18px var(--rose-glow));
+    }
+    @keyframes throb {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.22); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    .finale-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.75rem);
+      color: var(--text-main);
+      max-width: 680px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+      padding: 0 12px;
+    }
+
+    .finale-author {
+      font-family: var(--font-script);
+      font-size: clamp(3.2rem, 9vw, 4.8rem);
+      color: var(--gold-light);
+      text-shadow: 0 0 25px var(--gold-glow);
+      margin-bottom: 2.2rem;
+    }
+
+    .reply-selector-card {
+      background: var(--surface-glass);
+      border: 1px solid var(--border-medium);
+      border-radius: 20px;
+      padding: 1.6rem 1.2rem;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      backdrop-filter: blur(16px);
+      width: 100%;
+    }
+    .reply-header {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.04em;
+    }
+    .reactions-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .btn-react {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: clamp(0.82rem, 2.5vw, 0.9rem);
+      font-weight: 500;
+      color: var(--text-sub);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 42px;
+    }
+    .btn-react:active {
+      transform: scale(0.95);
+    }
+
+    .footer-colophon {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 3rem;
+      padding: 0 10px;
+    }
+
+    /* ==========================================================================
+       COMPREHENSIVE MOBILE RESPONSIVE OPTIMIZATION SUITE
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .section-wrap {
+        padding: 4.5rem 0 3.5rem;
+        min-height: auto;
+      }
+      .section-title {
+        font-size: clamp(1.75rem, 6.5vw, 2.4rem);
+      }
+      .section-sub {
+        font-size: 0.92rem;
+        padding: 0 8px;
+        margin-bottom: 1.5rem;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 320px;
+        gap: 12px;
+      }
+      .hero-actions .btn-gold,
+      .hero-actions .btn-glass {
+        width: 100%;
+        justify-content: center;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .memories-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .track-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .lyrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      /* Floating Audio Controller */
+      .audio-player-capsule {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px 5px 6px;
+        gap: 8px;
+        max-width: calc(100vw - 20px);
+      }
+      .audio-play-disc {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+      }
+      .audio-info {
+        max-width: 110px;
+        overflow: hidden;
+      }
+      .audio-title {
+        font-size: 0.7rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .audio-sub {
+        font-size: 0.58rem;
+      }
+      .capsule-track-switch-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+
+      /* Hero Title & Quotes */
+      .hero-name {
+        font-size: clamp(3.2rem, 17vw, 5.5rem);
+        margin-bottom: 0.4rem;
+      }
+      .hero-quote {
+        font-size: clamp(0.98rem, 4vw, 1.2rem);
+        margin: 0.6rem auto 1.8rem;
+      }
+
+      /* Countdown */
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+      .cd-panel {
+        padding: 1.1rem 0.5rem;
+        border-radius: 14px;
+      }
+      .cd-val {
+        font-size: clamp(1.9rem, 8vw, 2.6rem);
+        margin-bottom: 0.3rem;
+      }
+      .countdown-note {
+        font-size: 0.78rem;
+        padding: 6px 14px;
+        margin-top: 1.2rem;
+      }
+
+      /* Track Switcher Tabs */
+      .track-selector-tabs {
+        flex-direction: column;
+        width: 100%;
+        border-radius: 18px;
+        padding: 4px;
+        gap: 4px;
+        margin-bottom: 1.5rem;
+      }
+      .track-tab-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 12px;
+        font-size: 0.84rem;
+      }
+
+      /* Song Section Deck */
+      .song-player-card {
+        padding: 1.6rem 1rem;
+        border-radius: 20px;
+      }
+      .song-hero-title {
+        font-size: 1.45rem;
+      }
+      .song-hero-author {
+        font-size: 0.88rem;
+        margin-bottom: 1.3rem;
+      }
+      .song-deck {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 1.5rem;
+      }
+      .vinyl-record {
+        width: 80px;
+        height: 80px;
+      }
+      .song-deck #btnPlaySongDeck {
+        width: 100%;
+        max-width: 280px;
+      }
+      .song-scrubber-wrap {
+        margin: 1rem auto 1.4rem;
+      }
+
+      /* Letter Section */
+      .letter-parchment {
+        padding: 2.8rem 1.1rem 1.8rem;
+        border-radius: 18px;
+      }
+      .letter-callout {
+        padding: 0.9rem 1rem;
+        font-size: 0.98rem;
+        margin: 1.2rem 0;
+      }
+      .wax-seal {
+        top: -18px;
+        left: 14px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.35rem;
+      }
+      .letter-signature {
+        font-size: 2.4rem;
+      }
+
+      /* Reasons Cards */
+      .reasons-status-bar {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        margin-bottom: 1.4rem;
+      }
+      .card-3d {
+        height: 215px;
+      }
+      .face-front, .face-back {
+        padding: 1.3rem 1rem;
+      }
+      .face-icon {
+        font-size: 2rem;
+      }
+      .face-title {
+        font-size: 1.12rem;
+      }
+      .face-back {
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      /* Distance Section */
+      .distance-radar {
+        padding: 1.3rem 0.9rem;
+      }
+      .user-badge-avatar {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+      }
+      .user-name {
+        font-size: 0.8rem;
+      }
+      .radar-stats {
+        gap: 0.6rem;
+        font-size: 0.74rem;
+      }
+
+      /* Surprise Box & Cake */
+      .luxury-gift-box {
+        width: 200px;
+        height: 155px;
+      }
+      .revealed-gift-card {
+        padding: 2rem 1.1rem;
+        border-radius: 20px;
+      }
+      .cake-box {
+        padding: 1.3rem 0.8rem;
+      }
+      .candle-stage {
+        font-size: 3rem;
+      }
+
+      /* Reactions */
+      .btn-react {
+        width: 100%;
+        max-width: 270px;
+        justify-content: center;
+        font-size: 0.84rem;
+        padding: 9px 14px;
+      }
+      .reply-selector-card {
+        padding: 1.3rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cosmic Ambient Canvas -->
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Glowing Nebulae -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+  <!-- Background Music Element -->
+  <audio id="bgAudio" src="En_Heart_in_Hotspot.mp4" loop preload="auto"></audio>
+
+  <!-- FLOATING AUDIO CONTROLLER -->
+  <aside class="audio-player-capsule" id="audioToggleBtn" aria-label="Toggle audio playback">
+    <div class="audio-play-disc" id="discIconWrap">
+      <span id="discIcon">&#9654;</span>
+    </div>
+    <div class="audio-info">
+      <span class="audio-title" id="floatingTrackTitle">Salma Salma (Music)</span>
+      <span class="audio-sub" id="audioStatusText">Tap to play</span>
+    </div>
+    <div class="sound-bars-wrap" id="soundVisualizer" aria-hidden="true">
+      <div class="s-bar"></div>
+      <div class="s-bar"></div>
+      <div class="s-bar"></div>
+      <div class="s-bar"></div>
+    </div>
+    <button class="capsule-track-switch-btn" id="capsuleSwitchBtn" title="Switch between Full Music & Man's Voice" aria-label="Switch Track">
+      <span id="capsuleSwitchIcon">🎙️</span>
+    </button>
+  </aside>
+
+  <!-- Autoplay Prompt Toast -->
+  <div class="audio-toast" id="audioToast" role="alert">
+    <span>🎵</span>
+    <span>Tap anywhere to play our special song & explore</span>
+  </div>
+
+  <!-- SIDE CHAPTER NAVIGATION THREAD -->
+  <nav id="sideNav" aria-label="Chapter Navigation">
+    <button class="nav-dot active" data-target="hero" aria-label="Cover"><span class="nav-label">For Kirukki</span></button>
+    <button class="nav-dot" data-target="countdown" aria-label="Countdown"><span class="nav-label">The Countdown</span></button>
+    <button class="nav-dot" data-target="song" aria-label="Our Song"><span class="nav-label">Custom Song</span></button>
+    <button class="nav-dot" data-target="letter" aria-label="Letter"><span class="nav-label">Your Kirukken's Letter</span></button>
+    <button class="nav-dot" data-target="reasons" aria-label="Reasons"><span class="nav-label">Why I Love You</span></button>
+    <button class="nav-dot" data-target="distance" aria-label="Our Story"><span class="nav-label">Across The Miles</span></button>
+    <button class="nav-dot" data-target="surprise" aria-label="Surprise"><span class="nav-label">Your Gift</span></button>
+    <button class="nav-dot" data-target="finale" aria-label="Finale"><span class="nav-label">Forever</span></button>
+  </nav>
+
+  <!-- MAIN EXPERIENCE -->
+  <main>
+
+    <!-- SECTION 1: HERO / LANDING -->
+    <section id="hero" class="section-wrap">
+      <div class="hero-eyebrow">A Birthday Universe Created For</div>
+      <h1 class="hero-name">Kirukki</h1>
+      <p class="hero-quote">"To the girl who brought back every piece of love I ever thought was lost."</p>
+
+      <div class="hero-actions">
+        <a href="#countdown" class="btn-gold" id="btnExplore">
+          <span>Start Exploring</span>
+          <span>&#8595;</span>
+        </a>
+        <button class="btn-glass" id="heroAudioBtn" title="Play Full Studio Track with Music">
+          <span>🎵 Play With Music</span>
+        </button>
+        <button class="btn-glass btn-voice" id="heroVoiceBtn" title="Play Your Man's Voice Without Music">
+          <span>🎙️ Your Kirukken's Voice 😉</span>
+        </button>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span>Scroll to continue</span>
+        <span>&#8595;</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LIVE COUNTDOWN TO SEPTEMBER 1ST -->
+    <section id="countdown" class="section-wrap">
+      <div class="badge-pill">&#10022; Chapter One &#10022;</div>
+      <h2 class="section-title">Counting Down to <span class="gradient-text">September 1st</span></h2>
+      <p class="section-sub">Every passing second brings us closer to celebrating the most beautiful soul in my world.</p>
+
+      <div class="countdown-box">
+        <div class="countdown-grid">
+          <div class="cd-panel">
+            <span class="cd-val" id="cdDays">00</span>
+            <span class="cd-unit">Days</span>
+          </div>
+          <div class="cd-panel">
+            <span class="cd-val" id="cdHours">00</span>
+            <span class="cd-unit">Hours</span>
+          </div>
+          <div class="cd-panel">
+            <span class="cd-val" id="cdMins">00</span>
+            <span class="cd-unit">Minutes</span>
+          </div>
+          <div class="cd-panel">
+            <span class="cd-val" id="cdSecs">00</span>
+            <span class="cd-unit">Seconds</span>
+          </div>
+        </div>
+
+        <div class="countdown-note">
+          <span>🎂</span>
+          <span>Targeting September 1st &bull; Celebrating You</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CUSTOM SONG & AUDIO EXPERIENCE ("Salma Salma") -->
+    <section id="song" class="section-wrap">
+      <div class="badge-pill">&#10022; Special Audio Experience &#10022;</div>
+      <h2 class="section-title">Special Songs: <span class="gradient-text">"Salma Salma"</span></h2>
+      <p class="section-sub">Listen to our full studio arrangement with music, or hear your man singing directly in his own voice without music 😉</p>
+
+      <div class="song-section">
+        <!-- Segmented Mode Switcher -->
+        <div class="track-selector-tabs" role="tablist" aria-label="Song Version Selector">
+          <button class="track-tab-btn active" id="tabMusic" role="tab" aria-selected="true">
+            <span>🎵</span>
+            <span>Full Song (With Music)</span>
+          </button>
+          <button class="track-tab-btn voice-tab" id="tabVoice" role="tab" aria-selected="false">
+            <span>🎙️</span>
+            <span>Your Man's Voice (Without Music 😉)</span>
+          </button>
+        </div>
+
+        <!-- Two Quick-Select Track Cards -->
+        <div class="track-cards-grid">
+          <!-- Card 1: With Music -->
+          <div class="track-card active-track" id="trackCardMusic" data-track-index="0">
+            <div class="track-card-top">
+              <span class="track-card-badge">🎵 Studio Composition</span>
+              <span style="font-size:1.3rem;">🎧</span>
+            </div>
+            <div class="track-card-title">Salma Salma (With Music)</div>
+            <div class="track-card-desc">Full studio composition & beat arrangement crafted with love by Your Kirukken. "En Heart-in Hotspot".</div>
+            <div class="track-card-footer">
+              <span class="track-card-btn" id="btnCardMusic">
+                <span class="card-btn-icon">▶</span>
+                <span class="card-btn-text">Play Full Song</span>
+              </span>
+              <span style="font-size:0.75rem; color:var(--gold-light); font-family:var(--font-mono);">Studio Track</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Without Music (Voice Note) -->
+          <div class="track-card voice-card" id="trackCardVoice" data-track-index="1">
+            <div class="track-card-top">
+              <span class="track-card-badge">🎙️ Your Kirukken's Voice 😉</span>
+              <span style="font-size:1.3rem;">💖</span>
+            </div>
+            <div class="track-card-title">Your Man's Own Voice (Acapella)</div>
+            <div class="track-card-desc">Raw, genuine, and direct from Your Kirukken's heart — singing the entire song for you without any background music 😉</div>
+            <div class="track-card-footer">
+              <span class="track-card-btn" id="btnCardVoice">
+                <span class="card-btn-icon">▶</span>
+                <span class="card-btn-text">Play Man's Voice 😉</span>
+              </span>
+              <span style="font-size:0.75rem; color:var(--rose-light); font-family:var(--font-mono);">Raw Voice Note</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Player Deck -->
+        <div class="song-player-card">
+          <div class="song-badge" id="songBadge">🎵 Original Composition &bull; En Heart-in Hotspot</div>
+          <h3 class="song-hero-title" id="songHeroTitle">Salma Salma</h3>
+          <p class="song-hero-author" id="songHeroAuthor">Composed with infinite love by Your Kirukken &bull; Studio Version</p>
+
+          <div class="song-deck">
+            <div class="vinyl-record" id="bigVinyl">
+              <div class="vinyl-center" id="vinylCenter">🎧</div>
+            </div>
+            <button class="btn-gold" id="btnPlaySongDeck">
+              <span id="deckBtnIcon">▶</span>
+              <span id="deckBtnText">Play The Song Now</span>
+            </button>
+          </div>
+
+          <!-- Live Seek Scrubber -->
+          <div class="song-scrubber-wrap">
+            <div class="song-progress-container" id="songProgressContainer" title="Click or tap to seek">
+              <div class="song-progress-bar" id="songProgressBar"></div>
+            </div>
+            <div class="song-time-row">
+              <span id="songCurrentTime">0:00</span>
+              <span id="songDurationTime">0:00</span>
+            </div>
+          </div>
+
+          <!-- Lyrics Cards Grid -->
+          <div class="lyrics-grid">
+            <!-- Verse 1 -->
+            <div class="lyrics-card">
+              <div class="lyrics-verse-title">🚀 Verse 1: The Space Mission</div>
+              <p class="lyrics-body">Vaanathula minnum natchathiram thedi
+Salma unakaga parandhu vandhen
+Mars-uku poga ticket-uh kedaikala
+Cycle-eh eduthu kilambi vandhen
+Un veetu street-la land aagiten
+Un pinnaal suthave stand aagiten</p>
+            </div>
+
+            <!-- Verse 2 -->
+            <div class="lyrics-card highlight">
+              <div class="lyrics-verse-title">💻 Verse 2: The Tech Love</div>
+              <p class="lyrics-body">Wifi password-ah nee mathinalum
+En heart-in hotspot Salma dhane
+System crash aagi ninnalum
+En backup memory nee dhane
+En hard drive full-ah un photo thaan
+Nee illana en life-eh zero thaan</p>
+            </div>
+
+            <!-- Verse 3 -->
+            <div class="lyrics-card">
+              <div class="lyrics-verse-title">👑 Verse 3: The Little Heart</div>
+              <p class="lyrics-body">Toxic life-ah nee sweet-ah mathitta
+En veetukku rani-ah amanjuputta
+En single life-ah nee mudichuputta
+Salma ennaiye thirudiputta
+Sketch-uh potu enna kavuthuputta
+En future plans-ah nee maathiputta</p>
+            </div>
+
+            <!-- Chorus -->
+            <div class="lyrics-card highlight">
+              <div class="lyrics-verse-title">❤️ Chorus: The Ultimate Promise</div>
+              <p class="lyrics-body">Hey Salma Salma nee odi vaa
+Ennode life-la sera vaa
+Scooty-la unna naan drop pannava
+Unkooda eppavum irukkava?
+Hey Salma Salma nee odi vaa
+Ennode life-la sera vaa
+Shopping bag-ah naan thukkava
+Unkooda eppavum irukkava?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PERSONAL LOVE LETTER -->
+    <section id="letter" class="section-wrap">
+      <div class="badge-pill">&#10022; Chapter Two &#10022;</div>
+      <h2 class="section-title">A Letter From <span class="gradient-text">My Deepest Heart</span></h2>
+      <p class="section-sub">Words that I carry with me every single day, written especially for you.</p>
+
+      <div class="letter-stage">
+        <article class="letter-parchment">
+          <div class="wax-seal">K</div>
+          <h3 class="letter-salutation">My Dearest Kirukki,</h3>
+
+          <p>
+            Before you came into my life, there were parts of my heart I honestly believed were gone forever. I thought the ability to love purely and fearlessly had slipped away with the past.
+          </p>
+
+          <p>
+            And then you walked into my world. You didn't just love me — <span class="letter-emphasis">you made me feel all the love I had lost</span>. You looked at my past, accepted every single piece of it, and embraced me with open arms without hesitation or doubt.
+          </p>
+
+          <div class="letter-callout">
+            "My inner heart whispered to me from the very start: if you miss this girl, you will never get a girl like this ever again in your life."
+          </div>
+
+          <p>
+            You made me forget every wound and shadow that came before. With your loyalty, your breathtaking beauty, and the pure tenderness of your heart, you built a sanctuary where I finally feel completely at home.
+          </p>
+
+          <p>
+            Even across this distance, you are closer to me than anyone has ever been. On this birthday and every one after, I promise to cherish, respect, and love you with everything I have.
+          </p>
+
+          <div class="letter-foot">
+            <div class="letter-sign-off">
+              Forever and completely yours,<br>
+              Happy Birthday, my love.
+            </div>
+            <div class="letter-signature">Your Kirukken</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 5: REASONS I LOVE YOU (3D FLIP CARDS) -->
+    <section id="reasons" class="section-wrap">
+      <div class="badge-pill">&#10022; Chapter Three &#10022;</div>
+      <h2 class="section-title">Reasons Why <span class="gradient-text">I Love You</span></h2>
+      <p class="section-sub">Out of the millions of reasons my heart chose you, tap each card to discover them all.</p>
+
+      <div class="reasons-wrapper">
+        <div class="reasons-status-bar">
+          <span>Discovery Progress:</span>
+          <div class="progress-track"><div class="progress-fill" id="reasonsProgress"></div></div>
+          <span id="reasonsCountText">0 / 6 Discovered</span>
+        </div>
+
+        <div class="cards-grid">
+          <!-- Reason 1 -->
+          <div class="card-3d" tabindex="0" role="button" aria-label="Reason 1">
+            <div class="card-3d-inner">
+              <div class="face-front">
+                <div class="face-icon">💖</div>
+                <h3 class="face-title">The Love I Lost</h3>
+                <span class="face-prompt">Tap to flip</span>
+              </div>
+              <div class="face-back">
+                <span class="back-tag">Reason 01</span>
+                <p>The way you make me feel all the tenderness and love I thought I had lost forever. You breathed light back into my soul.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reason 2 -->
+          <div class="card-3d" tabindex="0" role="button" aria-label="Reason 2">
+            <div class="card-3d-inner">
+              <div class="face-front">
+                <div class="face-icon">🛡️</div>
+                <h3 class="face-title">Your Rare Loyalty</h3>
+                <span class="face-prompt">Tap to flip</span>
+              </div>
+              <div class="face-back">
+                <span class="back-tag">Reason 02</span>
+                <p>In a world full of temporary things, your unshakable loyalty and devotion make me feel the safest man alive.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reason 3 -->
+          <div class="card-3d" tabindex="0" role="button" aria-label="Reason 3">
+            <div class="card-3d-inner">
+              <div class="face-front">
+                <div class="face-icon">✨</div>
+                <h3 class="face-title">Incomparable Beauty</h3>
+                <span class="face-prompt">Tap to flip</span>
+              </div>
+              <div class="face-back">
+                <span class="back-tag">Reason 03</span>
+                <p>Not just your gorgeous smile that brightens my screen every day, but the radiant, gentle elegance inside your soul.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reason 4 -->
+          <div class="card-3d" tabindex="0" role="button" aria-label="Reason 4">
+            <div class="card-3d-inner">
+              <div class="face-front">
+                <div class="face-icon">🕊️</div>
+                <h3 class="face-title">Erasing My Past</h3>
+                <span class="face-prompt">Tap to flip</span>
+              </div>
+              <div class="face-back">
+                <span class="back-tag">Reason 04</span>
+                <p>The gentle way you made me forget all of my past pain and sorrow. With you, every single day feels like a fresh blessing.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reason 5 -->
+          <div class="card-3d" tabindex="0" role="button" aria-label="Reason 5">
+            <div class="card-3d-inner">
+              <div class="face-front">
+                <div class="face-icon">🫂</div>
+                <h3 class="face-title">Complete Acceptance</h3>
+                <span class="face-prompt">Tap to flip</span>
+              </div>
+              <div class="face-back">
+                <span class="back-tag">Reason 05</span>
+                <p>You accepted my past, understood my journey, and agreed to stand by me unconditionally as I am.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reason 6 -->
+          <div class="card-3d" tabindex="0" role="button" aria-label="Reason 6">
+            <div class="card-3d-inner">
+              <div class="face-front">
+                <div class="face-icon">💫</div>
+                <h3 class="face-title">Once in a Lifetime</h3>
+                <span class="face-prompt">Tap to flip</span>
+              </div>
+              <div class="face-back">
+                <span class="back-tag">Reason 06</span>
+                <p>My heart knew from the start: If I lose this girl, I will never get anyone like her again in this lifetime. You are irreplaceable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="allDiscoveredToast" hidden>
+          🌟 You unlocked all 6 reasons! But remember: my love for you has a million more yet to tell.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: LONG DISTANCE RADAR & MEMORIES -->
+    <section id="distance" class="section-wrap">
+      <div class="badge-pill">&#10022; Chapter Four &#10022;</div>
+      <h2 class="section-title">Across The <span class="gradient-text">Miles</span></h2>
+      <p class="section-sub">We may be separated by distance right now, but every late-night call and heartbeat keeps us intertwined.</p>
+
+      <div class="distance-wrapper">
+        <!-- Live Distance Radar Dial -->
+        <div class="distance-radar">
+          <div class="radar-row">
+            <div class="radar-user">
+              <div class="user-badge-avatar">👨🏻</div>
+              <span class="user-name">Your Kirukken</span>
+              <span class="user-sub">Where I am</span>
+            </div>
+
+            <div class="radar-track">
+              <div class="radar-pulse-light"></div>
+            </div>
+
+            <div class="radar-user">
+              <div class="user-badge-avatar">👑</div>
+              <span class="user-name">Kirukki</span>
+              <span class="user-sub">My Universe</span>
+            </div>
+          </div>
+
+          <div class="radar-stats">
+            <span>Miles Between Us: <strong>Temporary</strong></span>
+            <span>Connection: <strong>100% Unbreakable</strong></span>
+            <span>Next Chapter: <strong>Together Soon ✈️</strong></span>
+          </div>
+        </div>
+
+        <!-- Long Distance Memories Grid -->
+        <div class="memories-grid">
+          <div class="memory-card">
+            <div class="memory-art">
+              <span class="memory-tag">Midnight Hours</span>
+              <div class="art-icon">📞</div>
+            </div>
+            <h3 class="memory-title">Endless Voice Calls</h3>
+            <p class="memory-desc">Falling asleep with your gentle voice in my ear, talking about everything and nothing until 3 AM.</p>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-art">
+              <span class="memory-tag">Saved Glances</span>
+              <div class="art-icon">📱</div>
+            </div>
+            <h3 class="memory-title">Screen Kisses & Smiles</h3>
+            <p class="memory-desc">Secret screenshots of your laughing face on video calls that become my favorite wallpapers.</p>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-art">
+              <span class="memory-tag">Shared Sky</span>
+              <div class="art-icon">🌌</div>
+            </div>
+            <h3 class="memory-title">The Same Moon</h3>
+            <p class="memory-desc">Knowing that no matter how many miles separate our skies, we look up at the exact same stars every night.</p>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-art">
+              <span class="memory-tag">Our Promise</span>
+              <div class="art-icon">✈️</div>
+            </div>
+            <h3 class="memory-title">Closing The Distance</h3>
+            <p class="memory-desc">Counting down to the day the screen turns into a real embrace, and I never have to say goodbye on a call again.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: INTERACTIVE SURPRISE GIFT UNWRAP & CAKE CANDLE -->
+    <section id="surprise" class="section-wrap">
+      <div class="badge-pill">&#10022; Chapter Five &#10022;</div>
+      <h2 class="section-title">Your Birthday <span class="gradient-text">Surprise</span></h2>
+      <p class="section-sub">A special present waiting to be unlocked. Tap the box to unwrap your gift!</p>
+
+      <div class="surprise-stage">
+        <!-- Interactive 3D Gift Box -->
+        <div class="gift-container">
+          <div class="luxury-gift-box" id="giftBox" tabindex="0" role="button" aria-label="Open your birthday gift">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+            <div class="bow-icon">🎀</div>
+            <div class="gift-box-tag">Tap to Unwrap 🎁</div>
+          </div>
+        </div>
+
+        <!-- Revealed Birthday Card & Candle -->
+        <div class="revealed-gift-card" id="revealedCard" hidden>
+          <div class="gift-crown">Happy Birthday, My Queen!</div>
+          <h3 class="gift-title">To My Beautiful Kirukki 🎂</h3>
+
+          <p class="gift-msg">
+            May this new year of your life bring you all the warmth, joy, peace, and endless happiness you have brought into mine. You deserve the entire world and everything beautiful in it.
+          </p>
+
+          <!-- Interactive Candle Wish Mini-Game -->
+          <div class="cake-box">
+            <div class="candle-cue" id="candleCue">✨ Make a wish and click the candle to blow it out!</div>
+            <div class="candle-stage" id="candleBtn" role="button" tabindex="0" aria-label="Blow out birthday candle">
+              <span class="candle-flame-anim" id="candleFlame">🔥</span>🕯️
+            </div>
+            <div class="wish-msg" id="wishMsg" hidden>
+              🌟 Your wish has been released into the cosmos and locked in Your Kirukken's heart!
+            </div>
+          </div>
+
+          <button class="btn-gold" id="btnFireworks">
+            <span>🎉 Launch Grand Fireworks & Confetti</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FINALE & REACTION -->
+    <footer id="finale" class="section-wrap finale-section">
+      <div class="heart-pulse">&#9829;</div>
+      <p class="finale-quote">
+        "No matter the distance, no matter the time — you are my today, my tomorrow, and my forever."
+      </p>
+
+      <div class="finale-author">Yours Always, Your Kirukken</div>
+
+      <!-- Kirukki's Reaction Selector -->
+      <div class="reply-selector-card">
+        <div class="reply-header">Kirukki, how do you feel right now?</div>
+        <div class="reactions-row">
+          <button class="btn-react" data-reaction="love"><span>❤️</span><span>I love you so much</span></button>
+          <button class="btn-react" data-reaction="tears"><span>🥹</span><span>Happy tears</span></button>
+          <button class="btn-react" data-reaction="hug"><span>🫂</span><span>Sending you a big hug</span></button>
+          <button class="btn-react" data-reaction="soon"><span>✈️</span><span>Can't wait to see you</span></button>
+        </div>
+      </div>
+
+      <div class="footer-colophon">
+        Handcrafted with all my love for Kirukki &bull; September 1st
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      'use strict';
+
+      /* --------------------------------------------------------------------------
+         1. BACKGROUND PARTICLES (Deep Space Stars)
+         -------------------------------------------------------------------------- */
+      var canvas = document.getElementById('ambientCanvas');
+      if (canvas) {
+        var ctx = canvas.getContext('2d');
+        var stars = [];
+        var numStars = window.innerWidth < 600 ? 35 : 65;
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (var i = 0; i < numStars; i++) {
+          stars.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            r: Math.random() * 1.5 + 0.4,
+            alpha: Math.random() * 0.7 + 0.3,
+            speed: Math.random() * 0.25 + 0.08,
+            color: Math.random() > 0.4 ? '#fef0cd' : (Math.random() > 0.5 ? '#ffd5de' : '#ecddfc'),
+            pulse: Math.random() * Math.PI * 2,
+            pulseSpeed: Math.random() * 0.02 + 0.01
+          });
+        }
+
+        function loopStars() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (var s = 0; s < stars.length; s++) {
+            var star = stars[s];
+            star.pulse += star.pulseSpeed;
+            var curAlpha = star.alpha + Math.sin(star.pulse) * 0.25;
+            curAlpha = Math.max(0.15, Math.min(0.95, curAlpha));
+
+            star.y -= star.speed;
+            if (star.y < -10) {
+              star.y = canvas.height + 10;
+              star.x = Math.random() * canvas.width;
+            }
+
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+            ctx.fillStyle = star.color;
+            ctx.globalAlpha = curAlpha;
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = star.color;
+            ctx.fill();
+          }
+          requestAnimationFrame(loopStars);
+        }
+        loopStars();
+      }
+
+      /* --------------------------------------------------------------------------
+         2. STARDUST SPARKLE (Touch & Mouse Support)
+         -------------------------------------------------------------------------- */
+      var lastSparkleTime = 0;
+      function spawnSparkle(x, y) {
+        var now = Date.now();
+        if (now - lastSparkleTime < 50) return;
+        lastSparkleTime = now;
+
+        var sparkle = document.createElement('div');
+        sparkle.className = 'magic-sparkle';
+        var size = Math.random() * 7 + 3;
+        sparkle.style.width = size + 'px';
+        sparkle.style.height = size + 'px';
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        var colors = ['#f5d182', '#f46285', '#ecddfc', '#ffffff'];
+        sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.boxShadow = '0 0 8px ' + sparkle.style.background;
+        sparkle.style.setProperty('--tx', (Math.random() * 30 - 15) + 'px');
+        sparkle.style.setProperty('--ty', (Math.random() * 30 + 10) + 'px');
+
+        document.body.appendChild(sparkle);
+        setTimeout(function () {
+          if (sparkle.parentNode) sparkle.parentNode.removeChild(sparkle);
+        }, 800);
+      }
+
+      window.addEventListener('pointermove', function (e) {
+        spawnSparkle(e.clientX, e.clientY);
+      });
+      window.addEventListener('touchmove', function (e) {
+        if (e.touches && e.touches[0]) {
+          spawnSparkle(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
+      /* --------------------------------------------------------------------------
+         3. AUDIO PLAYER & SMART AUTOPLAY (Dual Tracks: Full Music & Man's Voice 😉)
+         -------------------------------------------------------------------------- */
+      var playlist = [
+        {
+          id: 'music',
+          title: 'Salma Salma (Music)',
+          floatingTitle: 'Salma Salma (Music)',
+          deckTitle: 'Salma Salma',
+          deckSub: 'Composed with infinite love by Your Kirukken • Studio Version',
+          badge: '🎵 Original Composition • En Heart-in Hotspot',
+          src: 'En_Heart_in_Hotspot.mp4',
+          icon: '🎧',
+          btnText: 'Play Full Song'
+        },
+        {
+          id: 'voice',
+          title: "Your Man's Voice 😉",
+          floatingTitle: "Your Man's Voice 😉",
+          deckTitle: "Your Man's Own Voice (Without Music 😉)",
+          deckSub: "Direct voice note from Your Kirukken's heart • Raw, sweet & pure acapella",
+          badge: "🎙️ Your Kirukken's Own Voice • Without Music 😉",
+          src: 'WhatsApp Ptt 2026-08-16 at 12.04.55 PM.ogg',
+          icon: '🎙️',
+          btnText: "Play Man's Voice 😉"
+        }
+      ];
+      var currentTrackIndex = 0;
+      var isAudioPlaying = false;
+
+      var bgAudio = document.getElementById('bgAudio');
+      var audioToggleBtn = document.getElementById('audioToggleBtn');
+      var discIcon = document.getElementById('discIcon');
+      var discIconWrap = document.getElementById('discIconWrap');
+      var audioStatusText = document.getElementById('audioStatusText');
+      var floatingTrackTitle = document.getElementById('floatingTrackTitle');
+      var capsuleSwitchBtn = document.getElementById('capsuleSwitchBtn');
+      var capsuleSwitchIcon = document.getElementById('capsuleSwitchIcon');
+      var soundVisualizer = document.getElementById('soundVisualizer');
+      var audioToast = document.getElementById('audioToast');
+      var heroAudioBtn = document.getElementById('heroAudioBtn');
+      var heroVoiceBtn = document.getElementById('heroVoiceBtn');
+      var bigVinyl = document.getElementById('bigVinyl');
+      var vinylCenter = document.getElementById('vinylCenter');
+      var btnPlaySongDeck = document.getElementById('btnPlaySongDeck');
+      var deckBtnIcon = document.getElementById('deckBtnIcon');
+      var deckBtnText = document.getElementById('deckBtnText');
+      var songBadge = document.getElementById('songBadge');
+      var songHeroTitle = document.getElementById('songHeroTitle');
+      var songHeroAuthor = document.getElementById('songHeroAuthor');
+      var songProgressBar = document.getElementById('songProgressBar');
+      var songProgressContainer = document.getElementById('songProgressContainer');
+      var songCurrentTime = document.getElementById('songCurrentTime');
+      var songDurationTime = document.getElementById('songDurationTime');
+      var tabMusic = document.getElementById('tabMusic');
+      var tabVoice = document.getElementById('tabVoice');
+      var trackCardMusic = document.getElementById('trackCardMusic');
+      var trackCardVoice = document.getElementById('trackCardVoice');
+      var btnCardMusic = document.getElementById('btnCardMusic');
+      var btnCardVoice = document.getElementById('btnCardVoice');
+
+      function formatTime(sec) {
+        if (isNaN(sec) || sec < 0) return '0:00';
+        var m = Math.floor(sec / 60);
+        var s = Math.floor(sec % 60);
+        return m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function updateAudioUI(playing) {
+        isAudioPlaying = playing;
+
+        if (playing) {
+          if (discIcon) discIcon.innerHTML = '&#10074;&#10074;';
+          if (discIconWrap) discIconWrap.classList.add('spinning');
+          if (bigVinyl) bigVinyl.classList.add('playing');
+          if (audioStatusText) audioStatusText.textContent = 'Playing';
+          if (soundVisualizer) soundVisualizer.classList.add('playing');
+          if (audioToast) audioToast.classList.remove('show');
+          if (deckBtnIcon) deckBtnIcon.textContent = '❚❚';
+          if (deckBtnText) deckBtnText.textContent = 'Pause Song';
+          
+          if (currentTrackIndex === 0) {
+            if (btnCardMusic) {
+              var tEl = btnCardMusic.querySelector('.card-btn-text');
+              var iEl = btnCardMusic.querySelector('.card-btn-icon');
+              if (tEl) tEl.textContent = 'Pause Music';
+              if (iEl) iEl.textContent = '❚❚';
+            }
+            if (btnCardVoice) {
+              var tEl2 = btnCardVoice.querySelector('.card-btn-text');
+              var iEl2 = btnCardVoice.querySelector('.card-btn-icon');
+              if (tEl2) tEl2.textContent = "Play Man's Voice 😉";
+              if (iEl2) iEl2.textContent = '▶';
+            }
+          } else {
+            if (btnCardVoice) {
+              var tEl3 = btnCardVoice.querySelector('.card-btn-text');
+              var iEl3 = btnCardVoice.querySelector('.card-btn-icon');
+              if (tEl3) tEl3.textContent = 'Pause Voice';
+              if (iEl3) iEl3.textContent = '❚❚';
+            }
+            if (btnCardMusic) {
+              var tEl4 = btnCardMusic.querySelector('.card-btn-text');
+              var iEl4 = btnCardMusic.querySelector('.card-btn-icon');
+              if (tEl4) tEl4.textContent = 'Play Full Song';
+              if (iEl4) iEl4.textContent = '▶';
+            }
+          }
+        } else {
+          if (discIcon) discIcon.innerHTML = '&#9654;';
+          if (discIconWrap) discIconWrap.classList.remove('spinning');
+          if (bigVinyl) bigVinyl.classList.remove('playing');
+          if (audioStatusText) audioStatusText.textContent = 'Paused';
+          if (soundVisualizer) soundVisualizer.classList.remove('playing');
+          if (deckBtnIcon) deckBtnIcon.textContent = '▶';
+          if (deckBtnText) deckBtnText.textContent = currentTrackIndex === 0 ? 'Play The Song Now' : "Play Man's Voice Now 😉";
+
+          if (btnCardMusic) {
+            var tEl5 = btnCardMusic.querySelector('.card-btn-text');
+            var iEl5 = btnCardMusic.querySelector('.card-btn-icon');
+            if (tEl5) tEl5.textContent = 'Play Full Song';
+            if (iEl5) iEl5.textContent = '▶';
+          }
+          if (btnCardVoice) {
+            var tEl6 = btnCardVoice.querySelector('.card-btn-text');
+            var iEl6 = btnCardVoice.querySelector('.card-btn-icon');
+            if (tEl6) tEl6.textContent = "Play Man's Voice 😉";
+            if (iEl6) iEl6.textContent = '▶';
+          }
+        }
+      }
+
+      function switchTrack(index, autoPlay) {
+        if (index < 0 || index >= playlist.length) return;
+        var isDifferentTrack = (currentTrackIndex !== index);
+        currentTrackIndex = index;
+        var track = playlist[currentTrackIndex];
+
+        // Update tabs
+        if (tabMusic && tabVoice) {
+          if (currentTrackIndex === 0) {
+            tabMusic.classList.add('active');
+            tabMusic.setAttribute('aria-selected', 'true');
+            tabVoice.classList.remove('active');
+            tabVoice.setAttribute('aria-selected', 'false');
+          } else {
+            tabVoice.classList.add('active');
+            tabVoice.setAttribute('aria-selected', 'true');
+            tabMusic.classList.remove('active');
+            tabMusic.setAttribute('aria-selected', 'false');
+          }
+        }
+
+        // Update Quick Cards
+        if (trackCardMusic && trackCardVoice) {
+          if (currentTrackIndex === 0) {
+            trackCardMusic.classList.add('active-track');
+            trackCardVoice.classList.remove('active-track');
+          } else {
+            trackCardVoice.classList.add('active-track');
+            trackCardMusic.classList.remove('active-track');
+          }
+        }
+
+        // Update Deck text & Vinyl icon
+        if (songBadge) songBadge.textContent = track.badge;
+        if (songHeroTitle) songHeroTitle.textContent = track.deckTitle;
+        if (songHeroAuthor) songHeroAuthor.textContent = track.deckSub;
+        if (vinylCenter) vinylCenter.textContent = track.icon;
+        if (floatingTrackTitle) floatingTrackTitle.textContent = track.floatingTitle;
+        if (capsuleSwitchIcon) capsuleSwitchIcon.textContent = currentTrackIndex === 0 ? '🎙️' : '🎵';
+
+        // Update Audio Source if changed
+        if (bgAudio) {
+          var currentSrc = bgAudio.getAttribute('src') || '';
+          if (isDifferentTrack || !currentSrc.includes(track.src)) {
+            var wasPlaying = isAudioPlaying;
+            bgAudio.src = track.src;
+            bgAudio.load();
+            if (songProgressBar) songProgressBar.style.width = '0%';
+            if (songCurrentTime) songCurrentTime.textContent = '0:00';
+            if (autoPlay || wasPlaying) {
+              playMusic();
+            } else {
+              updateAudioUI(false);
+            }
+          } else if (autoPlay && bgAudio.paused) {
+            playMusic();
+          }
+        }
+      }
+
+      function playMusic() {
+        if (!bgAudio) return;
+        var p = bgAudio.play();
+        if (p !== undefined) {
+          p.then(function () {
+            updateAudioUI(true);
+          }).catch(function () {
+            updateAudioUI(false);
+            setTimeout(function () {
+              if (!isAudioPlaying && audioToast) audioToast.classList.add('show');
+            }, 1000);
+          });
+        }
+      }
+
+      // Initial Play attempt
+      playMusic();
+
+      // Trigger playback on first user gesture
+      function onFirstUserGesture() {
+        if (!isAudioPlaying) {
+          playMusic();
+        }
+        window.removeEventListener('click', onFirstUserGesture);
+        window.removeEventListener('touchstart', onFirstUserGesture);
+      }
+      window.addEventListener('click', onFirstUserGesture, { once: true });
+      window.addEventListener('touchstart', onFirstUserGesture, { once: true });
+
+      function toggleAudioPlayback(e) {
+        if (e) e.stopPropagation();
+        if (!bgAudio) return;
+        if (bgAudio.paused) {
+          playMusic();
+        } else {
+          bgAudio.pause();
+          updateAudioUI(false);
+        }
+      }
+
+      // Progress & Time updates
+      if (bgAudio) {
+        bgAudio.addEventListener('timeupdate', function () {
+          if (!bgAudio.duration) return;
+          var pct = (bgAudio.currentTime / bgAudio.duration) * 100;
+          if (songProgressBar) songProgressBar.style.width = pct + '%';
+          if (songCurrentTime) songCurrentTime.textContent = formatTime(bgAudio.currentTime);
+        });
+
+        bgAudio.addEventListener('loadedmetadata', function () {
+          if (songDurationTime) songDurationTime.textContent = formatTime(bgAudio.duration);
+          if (songCurrentTime) songCurrentTime.textContent = formatTime(bgAudio.currentTime);
+        });
+
+        bgAudio.addEventListener('ended', function () {
+          updateAudioUI(false);
+          if (songProgressBar) songProgressBar.style.width = '0%';
+        });
+      }
+
+      // Progress Scrubber Click
+      if (songProgressContainer) {
+        songProgressContainer.addEventListener('click', function (e) {
+          if (!bgAudio || !bgAudio.duration) return;
+          var rect = songProgressContainer.getBoundingClientRect();
+          var clickX = e.clientX - rect.left;
+          var pct = Math.max(0, Math.min(1, clickX / rect.width));
+          bgAudio.currentTime = pct * bgAudio.duration;
+          if (songProgressBar) songProgressBar.style.width = (pct * 100) + '%';
+          if (bgAudio.paused) playMusic();
+        });
+      }
+
+      // Toggle & Switch buttons
+      if (audioToggleBtn) {
+        audioToggleBtn.addEventListener('click', function (e) {
+          if (e.target.closest('#capsuleSwitchBtn')) return;
+          toggleAudioPlayback(e);
+        });
+      }
+
+      if (capsuleSwitchBtn) {
+        capsuleSwitchBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var nextIndex = currentTrackIndex === 0 ? 1 : 0;
+          switchTrack(nextIndex, true);
+        });
+      }
+
+      if (heroAudioBtn) {
+        heroAudioBtn.addEventListener('click', function () {
+          switchTrack(0, true);
+        });
+      }
+
+      if (heroVoiceBtn) {
+        heroVoiceBtn.addEventListener('click', function () {
+          switchTrack(1, true);
+        });
+      }
+
+      if (btnPlaySongDeck) {
+        btnPlaySongDeck.addEventListener('click', toggleAudioPlayback);
+      }
+
+      if (audioToast) {
+        audioToast.addEventListener('click', function () { playMusic(); });
+      }
+
+      // Tab switcher clicks
+      if (tabMusic) {
+        tabMusic.addEventListener('click', function () {
+          switchTrack(0, true);
+        });
+      }
+      if (tabVoice) {
+        tabVoice.addEventListener('click', function () {
+          switchTrack(1, true);
+        });
+      }
+
+      // Track Card Clicks
+      if (trackCardMusic) {
+        trackCardMusic.addEventListener('click', function () {
+          if (currentTrackIndex === 0) {
+            toggleAudioPlayback();
+          } else {
+            switchTrack(0, true);
+          }
+        });
+      }
+      if (trackCardVoice) {
+        trackCardVoice.addEventListener('click', function () {
+          if (currentTrackIndex === 1) {
+            toggleAudioPlayback();
+          } else {
+            switchTrack(1, true);
+          }
+        });
+      }
+
+      /* --------------------------------------------------------------------------
+         4. LIVE COUNTDOWN TO SEPTEMBER 1ST
+         -------------------------------------------------------------------------- */
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function updateCountdown() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var target = new Date(year, 8, 1, 0, 0, 0); // Month index 8 = September
+
+        if (now.getTime() > target.getTime()) {
+          target = new Date(year + 1, 8, 1, 0, 0, 0);
+        }
+
+        var diff = target.getTime() - now.getTime();
+        var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        var m = Math.floor((diff / (1000 * 60)) % 60);
+        var s = Math.floor((diff / 1000) % 60);
+
+        var elD = document.getElementById('cdDays');
+        var elH = document.getElementById('cdHours');
+        var elM = document.getElementById('cdMins');
+        var elS = document.getElementById('cdSecs');
+
+        if (elD) elD.textContent = pad(d);
+        if (elH) elH.textContent = pad(h);
+        if (elM) elM.textContent = pad(m);
+        if (elS) elS.textContent = pad(s);
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      /* --------------------------------------------------------------------------
+         5. NAVIGATION & SMOOTH SCROLLING
+         -------------------------------------------------------------------------- */
+      var navDots = document.querySelectorAll('.nav-dot');
+      var sections = document.querySelectorAll('.section-wrap');
+
+      navDots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var targetId = this.getAttribute('data-target');
+          var targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Scroll Spy for nav dots
+      window.addEventListener('scroll', function () {
+        var scrollPos = window.scrollY + window.innerHeight * 0.4;
+        sections.forEach(function (sec) {
+          var top = sec.offsetTop;
+          var height = sec.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            navDots.forEach(function (dot) {
+              if (dot.getAttribute('data-target') === sec.id) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+        });
+      });
+
+      /* --------------------------------------------------------------------------
+         6. 3D REASONS CARDS FLIP & DISCOVERY PROGRESS
+         -------------------------------------------------------------------------- */
+      var cards3d = document.querySelectorAll('.card-3d');
+      var flippedSet = new Set();
+      var progressBar = document.getElementById('reasonsProgress');
+      var progressText = document.getElementById('reasonsCountText');
+      var allDiscoveredToast = document.getElementById('allDiscoveredToast');
+
+      cards3d.forEach(function (card, idx) {
+        card.addEventListener('click', function () {
+          this.classList.toggle('flipped');
+          if (this.classList.contains('flipped')) {
+            flippedSet.add(idx);
+          }
+          var count = flippedSet.size;
+          if (progressBar) progressBar.style.width = ((count / 6) * 100) + '%';
+          if (progressText) progressText.textContent = count + ' / 6 Discovered';
+
+          if (count === 6 && allDiscoveredToast) {
+            allDiscoveredToast.hidden = false;
+            if (window.confetti) {
+              confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+            }
+          }
+        });
+
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+
+      /* --------------------------------------------------------------------------
+         7. SURPRISE GIFT UNWRAP & CANDLE GAME
+         -------------------------------------------------------------------------- */
+      var giftBox = document.getElementById('giftBox');
+      var revealedCard = document.getElementById('revealedCard');
+      var btnFireworks = document.getElementById('btnFireworks');
+      var candleBtn = document.getElementById('candleBtn');
+      var candleFlame = document.getElementById('candleFlame');
+      var candleCue = document.getElementById('candleCue');
+      var wishMsg = document.getElementById('wishMsg');
+      var isUnwrapped = false;
+
+      function triggerGrandConfetti() {
+        if (window.confetti) {
+          confetti({
+            particleCount: 110,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#fef0cd', '#f5d182', '#ffd5de', '#f46285', '#ffffff']
+          });
+        }
+      }
+
+      if (giftBox) {
+        giftBox.addEventListener('click', function () {
+          if (!isUnwrapped) {
+            isUnwrapped = true;
+            giftBox.style.transform = 'scale(0.85) translateY(12px)';
+            setTimeout(function () {
+              giftBox.style.display = 'none';
+              if (revealedCard) revealedCard.hidden = false;
+              triggerGrandConfetti();
+            }, 250);
+          } else {
+            triggerGrandConfetti();
+          }
+        });
+      }
+
+      if (btnFireworks) {
+        btnFireworks.addEventListener('click', function () {
+          triggerGrandConfetti();
+          setTimeout(function () {
+            if (window.confetti) {
+              confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 } });
+              confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 } });
+            }
+          }, 200);
+        });
+      }
+
+      // Candle Blow-Out
+      var candleBlown = false;
+      if (candleBtn) {
+        candleBtn.addEventListener('click', function () {
+          if (!candleBlown) {
+            candleBlown = true;
+            if (candleFlame) candleFlame.style.display = 'none';
+            candleBtn.innerHTML = '💨🕯️';
+            if (candleCue) candleCue.textContent = '✨ You blew out the candle!';
+            if (wishMsg) wishMsg.hidden = false;
+            triggerGrandConfetti();
+          }
+        });
+      }
+
+      /* --------------------------------------------------------------------------
+         8. SALMA'S REACTION SELECTION
+         -------------------------------------------------------------------------- */
+      var reactBtns = document.querySelectorAll('.btn-react');
+      reactBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          triggerGrandConfetti();
+          btn.style.background = 'linear-gradient(135deg, #f5d182, #c48c2b)';
+          btn.style.color = '#12041a';
+          btn.style.borderColor = '#f5d182';
+
+          var reaction = this.getAttribute('data-reaction');
+          var text = '💖 Message sent straight to Your Kirukken’s heart!';
+          if (reaction === 'love') text = '💖 Your Kirukken loves you infinitely more!';
+          if (reaction === 'tears') text = '🥹 Wiping your tears and sending you the sweetest kiss!';
+          if (reaction === 'hug') text = '🫂 Hug received and holding you tight across the miles!';
+          if (reaction === 'soon') text = '✈️ Counting down every second until we are together!';
+
+          this.innerHTML = '<span>✨ ' + text + '</span>';
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>
